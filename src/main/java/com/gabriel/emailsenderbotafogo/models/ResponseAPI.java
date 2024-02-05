@@ -1,4 +1,4 @@
-package com.gabriel.emailsenderbotafogo.entities;
+package com.gabriel.emailsenderbotafogo.models;
 
 public class ResponseAPI {
 
