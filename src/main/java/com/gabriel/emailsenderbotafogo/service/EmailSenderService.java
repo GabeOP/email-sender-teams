@@ -34,9 +34,16 @@ public class EmailSenderService {
     message.setTo(usuario.getEmail());
     message.setSubject(model.getTituloEmail());
 
+    StringBuilder body = new StringBuilder();
+    body.append("Aqui estão as notícias de hoje sobre o seu time \n\n");
+    for (NoticiaModel item : resultadoApi) {
+      body.append(item).append("\n");
+    }
+
+    message.setText(body.toString());
+    emailSender.send(message);
   }
-  public List<NoticiaModel> consumirApi(String nomeTime) {
-    nomeTime.split("")[0].toUpperCase();
+  private List<NoticiaModel> consumirApi(String nomeTime) {
     RestTemplate restTemplate = new RestTemplate();
 
     String apiUrl = "https://newsapi.org/v2/top-headlines?country=br&category=sports&apiKey=a9e0059ba2bc4282be6a0d18862faf84";

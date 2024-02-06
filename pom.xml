@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gabriel</groupId>
-	<artifactId>email-sender-botafogo</artifactId>
+	<artifactId>email-sender-times</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>email-sender-botafogo</name>
-	<description>Notícias do dia sobre o Botafogo</description>
+	<name>email-sender-times</name>
+	<description>Notícias do dia sobre times</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

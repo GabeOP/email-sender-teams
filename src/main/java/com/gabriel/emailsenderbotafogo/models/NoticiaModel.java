@@ -36,4 +36,11 @@ public class NoticiaModel {
   public void setUrlNoticia(String urlNoticia) {
     UrlNoticia = urlNoticia;
   }
+
+  @Override
+  public String toString() {
+    return "TÍTULO DA NOTÍCIA: " + tituloNoticia + "\n" +
+            "AUTOR DA NOTÍCIA: " + autorNoticia + "\n" +
+            "LINK PARA A NOTÍCIA: " + UrlNoticia + "\n\n" ;
+  }
 }

@@ -1,6 +1,7 @@
 package com.gabriel.emailsenderbotafogo.controller;
 
 import com.gabriel.emailsenderbotafogo.models.entities.Usuario;
+import com.gabriel.emailsenderbotafogo.service.EmailSenderService;
 import com.gabriel.emailsenderbotafogo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,13 +16,12 @@ public class EmailUsuarioController {
   @Autowired
   private UsuarioService usuarioService;
 
-//  @GetMapping("/{nomeTime}")
-//  public void api(@PathVariable String nomeTime) {
-//    emailSenderService.consumirApi(nomeTime);
-//  }
+  @Autowired
+  EmailSenderService emailSenderService;
 
   @PostMapping
   public String salvarUsuario(@RequestBody Usuario usuario) {
+    emailSenderService.enviarEmail(usuario);
     return usuarioService.salvarUsuario(usuario);
   }
 }
