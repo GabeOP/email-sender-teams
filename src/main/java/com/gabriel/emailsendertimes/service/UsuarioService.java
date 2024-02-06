@@ -16,7 +16,11 @@ public class UsuarioService {
 
   public String salvarUsuario(Usuario usuario) {
     repository.save(usuario);
-    //emailSenderService.enviarEmail(usuario);
+
+    /* Comente o chamado do método enviarEmail() caso esteja sendo usado @Scheduled na classe EmailSenderService,
+    *  já que o usuário não receberá um e-mail apenas ao se cadastrar, e sim no horário previsto.
+    *  */
+    emailSenderService.enviarEmail(usuario);
     return "Usuário cadastrado com sucesso.";
   }
 }
