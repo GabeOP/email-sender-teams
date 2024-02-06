@@ -1,19 +1,19 @@
-package com.gabriel.emailsenderbotafogo.service;
+package com.gabriel.emailsendertimes.service;
 
-import com.gabriel.emailsenderbotafogo.models.EmailModel;
-import com.gabriel.emailsenderbotafogo.models.NoticiaModel;
-import com.gabriel.emailsenderbotafogo.models.entities.Usuario;
+import com.gabriel.emailsendertimes.models.EmailModel;
+import com.gabriel.emailsendertimes.models.NoticiaModel;
+import com.gabriel.emailsendertimes.models.entities.Usuario;
+import com.gabriel.emailsendertimes.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class EmailSenderService {
@@ -21,27 +21,33 @@ public class EmailSenderService {
   @Autowired
   private JavaMailSender emailSender;
 
+  @Autowired
+  private UsuarioRepository usuarioRepository;
+
   @Transactional
-  public void enviarEmail(Usuario usuario) {
+  @Scheduled(cron = "0 30 18 * * *")
+  public void enviarEmail() {
 
     EmailModel model = new EmailModel();
 
     SimpleMailMessage message = new SimpleMailMessage();
 
-    List<NoticiaModel> resultadoApi = consumirApi(usuario.getTime());
+    for(Usuario usuario : usuarioRepository.findAll()) {
+      List<NoticiaModel> resultadoApi = consumirApi(usuario.getTime());
 
-    message.setFrom(model.getEmailFrom());
-    message.setTo(usuario.getEmail());
-    message.setSubject(model.getTituloEmail());
+      message.setFrom(model.getEmailFrom());
+      message.setTo(usuario.getEmail());
+      message.setSubject(model.getTituloEmail());
 
-    StringBuilder body = new StringBuilder();
-    body.append("Aqui estão as notícias de hoje sobre o seu time \n\n");
-    for (NoticiaModel item : resultadoApi) {
-      body.append(item).append("\n");
+      StringBuilder body = new StringBuilder();
+      body.append("Aqui estão as notícias de hoje sobre o seu time \n\n");
+      for (NoticiaModel item : resultadoApi) {
+        body.append(item).append("\n");
+      }
+
+      message.setText(body.toString());
+      emailSender.send(message);
     }
-
-    message.setText(body.toString());
-    emailSender.send(message);
   }
   private List<NoticiaModel> consumirApi(String nomeTime) {
     RestTemplate restTemplate = new RestTemplate();

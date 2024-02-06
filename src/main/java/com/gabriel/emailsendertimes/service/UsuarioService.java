@@ -1,7 +1,7 @@
-package com.gabriel.emailsenderbotafogo.service;
+package com.gabriel.emailsendertimes.service;
 
-import com.gabriel.emailsenderbotafogo.models.entities.Usuario;
-import com.gabriel.emailsenderbotafogo.repository.UsuarioRepository;
+import com.gabriel.emailsendertimes.models.entities.Usuario;
+import com.gabriel.emailsendertimes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class UsuarioService {
 
   public String salvarUsuario(Usuario usuario) {
     repository.save(usuario);
-    emailSenderService.enviarEmail(usuario);
+    //emailSenderService.enviarEmail(usuario);
     return "Usuário cadastrado com sucesso.";
   }
 }

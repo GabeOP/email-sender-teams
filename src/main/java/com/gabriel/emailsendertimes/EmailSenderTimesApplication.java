@@ -1,11 +1,13 @@
-package com.gabriel.emailsenderbotafogo;
+package com.gabriel.emailsendertimes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-public class EmailSenderTimesApplication {
+@EnableScheduling
 
+public class EmailSenderTimesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmailSenderTimesApplication.class, args);
 	}

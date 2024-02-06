@@ -1,4 +1,4 @@
-package com.gabriel.emailsenderbotafogo.models;
+package com.gabriel.emailsendertimes.models;
 
 import java.util.List;
 

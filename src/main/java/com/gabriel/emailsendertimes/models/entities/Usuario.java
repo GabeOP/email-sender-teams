@@ -1,4 +1,4 @@
-package com.gabriel.emailsenderbotafogo.models.entities;
+package com.gabriel.emailsendertimes.models.entities;
 
 import jakarta.persistence.*;
 
