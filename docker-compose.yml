@@ -8,7 +8,7 @@ services:
       - MYSQL_DATABASE=emailsendertimes
       - MYSQL_ROOT_PASSWORD=123
     ports:
-      - "3307:3307"
+      - "3307:3306"
 
   springbootapp:
     build:
@@ -16,7 +16,7 @@ services:
       dockerfile: ./Dockerfile
     container_name: appspring
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3307/emailsendertimes
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3307/emailsendertimes
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=123
     ports:
