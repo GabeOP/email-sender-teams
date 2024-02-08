@@ -36,4 +36,8 @@ a News API. Após obter a key, adicione-a no "api.url" no arquivo application.pr
 - 2º Dentro da pasta do projeto, use o comando "docker-compose up". Isso já será o bastante para dockerizar o banco de dados MySQL e a aplicação Spring Boot.
 - 3º No Postman (ou qualquer outra ferramenta similar), faça uma requisição POST para o endereço "http://localhost:8080/api/v1" enviando no corpo JSON os campos "e-mail" e "time".
 
+# Exemplo do e-mail recebido
 
+### 👇👇 Nesse formato será o e-mail recebido pelo usuário cadastrado. Nesse exemplo o usuário se cadastrou usando como time o "Palmeiras". 👇👇
+
+![img](exemplo.png)
